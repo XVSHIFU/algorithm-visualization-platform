@@ -17,7 +17,7 @@ import './App.css';
  */
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/algorithm-visualization-platform">
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
