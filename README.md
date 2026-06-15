@@ -1,3 +1,8 @@
+![React](https://img.shields.io/badge/React-18.2.0-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-blue)
+![Vite](https://img.shields.io/badge/Vite-5.2.0-646CFF)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 # 算法可视化平台
 
 基于 React + TypeScript + Vite 构建的算法可视化教学平台，通过动态可视化帮助理解算法原理。
