@@ -21,7 +21,7 @@ export const SortingAlgorithms: React.FC = () => {
       difficulty: 'medium',
       timeComplexity: 'O(n log n)',
       description: '分治算法，选择基准元素进行分区，递归排序',
-      status: 'coming',
+      status: 'available',
     },
     {
       name: '归并排序',
@@ -29,7 +29,7 @@ export const SortingAlgorithms: React.FC = () => {
       difficulty: 'medium',
       timeComplexity: 'O(n log n)',
       description: '分治算法，将数组分成小块排序后合并',
-      status: 'coming',
+      status: 'available',
     },
   ];
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ControlPanel } from '@/components';
 import { AnimationState, PlaybackSpeed, Step } from '@/types';
 import { bubbleSortAlgorithm } from '@/algorithms/bubbleSort';

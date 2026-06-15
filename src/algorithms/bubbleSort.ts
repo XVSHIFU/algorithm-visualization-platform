@@ -1,11 +1,11 @@
-import { AlgorithmModule, Step, TestCase } from '@/types';
+import { AlgorithmModule, Step } from '@/types';
 
 /**
  * 冒泡排序算法实现
  * 时间复杂度: O(n²)
  * 空间复杂度: O(1)
  */
-export const bubbleSortAlgorithm: AlgorithmModule<number[], number[]> = {
+export const bubbleSortAlgorithm: AlgorithmModule<number[]> = {
   name: '冒泡排序',
   category: 'sorting',
   difficulty: 'low',

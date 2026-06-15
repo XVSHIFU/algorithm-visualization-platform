@@ -1,9 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components';
-import { Home } from './pages/Home/Home';
-import { SortingAlgorithms } from './pages/SortingAlgorithms/SortingAlgorithms';
-import { BubbleSortVisualizer } from './visualizers/BubbleSortVisualizer/BubbleSortVisualizer';
+import { Home, SortingAlgorithms, GraphAlgorithms, RecursiveAlgorithms } from './pages';
+import {
+  BubbleSortVisualizer,
+  QuickSortVisualizer,
+  MergeSortVisualizer,
+  DijkstraVisualizer,
+  HanoiVisualizer,
+} from './visualizers';
 import './App.css';
 
 /**
@@ -18,26 +23,17 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/sorting" element={<SortingAlgorithms />} />
           <Route path="/sorting/bubble" element={<BubbleSortVisualizer />} />
-          <Route path="/graph" element={<ComingSoon category="图算法" />} />
-          <Route path="/recursive" element={<ComingSoon category="递归算法" />} />
+          <Route path="/sorting/quick" element={<QuickSortVisualizer />} />
+          <Route path="/sorting/merge" element={<MergeSortVisualizer />} />
+          <Route path="/graph" element={<GraphAlgorithms />} />
+          <Route path="/graph/dijkstra" element={<DijkstraVisualizer />} />
+          <Route path="/recursive" element={<RecursiveAlgorithms />} />
+          <Route path="/recursive/hanoi" element={<HanoiVisualizer />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </BrowserRouter>
-  );
-};
-
-/**
- * 即将推出页面
- */
-const ComingSoon: React.FC<{ category: string }> = ({ category }) => {
-  return (
-    <div style={{ textAlign: 'center', padding: '4rem 2rem' }}>
-      <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }}>🚧</h1>
-      <h2>{category}可视化</h2>
-      <p style={{ color: '#7f8c8d', fontSize: '1.2rem' }}>即将推出，敬请期待！</p>
-    </div>
   );
 };
 

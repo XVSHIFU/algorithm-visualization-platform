@@ -5,12 +5,14 @@ export interface Step {
   /** 步骤序号 */
   stepNumber: number;
   /** 当前数据状态 */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
-  /** 高亮的元素索引 */
-  highlights?: number[];
+  /** 高亮的元素索引或ID（支持数字索引和字符串ID） */
+  highlights?: (number | string)[];
   /** 当前操作描述 */
   description: string;
   /** 额外的可视化元数据 */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   metadata?: Record<string, any>;
 }
 
@@ -21,8 +23,10 @@ export interface TestCase {
   /** 用例名称 */
   name: string;
   /** 输入数据 */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   input: any;
   /** 期望输出 */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   expected: any;
   /** 用例描述 */
   description?: string;
@@ -42,7 +46,8 @@ export type AlgorithmCategory = 'sorting' | 'graph' | 'recursive' | 'other';
  * 标准算法模块接口
  * 所有算法实现必须遵循此接口
  */
-export interface AlgorithmModule<TInput = any, TOutput = any> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface AlgorithmModule<TInput = any> {
   /** 算法名称 */
   name: string;
 
@@ -95,7 +100,7 @@ export interface AlgorithmModule<TInput = any, TOutput = any> {
 /**
  * 可视化器接口
  */
-export interface Visualizer<T = any> {
+export interface Visualizer {
   /**
    * 渲染单个步骤
    * @param step 步骤数据
