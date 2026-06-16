@@ -167,7 +167,7 @@ npm run preview
 
 项目已配置 GitHub Pages 自动部署。详细部署说明和注意事项请查看：
 
-📖 **[部署指南](docs/DEPLOYMENT.md)**
+📖 **[部署指南](docs/部署指南.md)**
 
 ### AI 助手配置
 
@@ -175,7 +175,7 @@ npm run preview
 
 如需接入真实 AI 模型（DeepSeek / OpenAI / 智谱 GLM），请查看：
 
-📖 **[AI 助手使用说明](docs/AI_ASSISTANT.md)**
+📖 **[AI 助手使用说明](docs/AI助手使用说明.md)**
 
 ## 👥 团队成员与分工
 
@@ -226,10 +226,10 @@ MIT License
 
 ## 📖 相关文档
 
-- [部署指南](docs/DEPLOYMENT.md) - 如何部署到 GitHub Pages
-- [AI 助手使用说明](docs/AI_ASSISTANT.md) - 如何配置 AI 模型
-- [架构设计](docs/ARCHITECTURE.md) - 系统架构和技术选型
-- [快速开始](docs/QUICKSTART.md) - 快速上手指南
+- [部署指南](docs/部署指南.md) - 如何部署到 GitHub Pages
+- [AI 助手使用说明](docs/AI助手使用说明.md) - 如何配置 AI 模型
+- [架构设计](docs/系统架构设计.md) - 系统架构和技术选型
+- [快速开始](docs/快速开始.md) - 快速上手指南
 
 ---
 
