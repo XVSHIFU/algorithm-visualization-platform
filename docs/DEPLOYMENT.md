@@ -1,13 +1,14 @@
 # 部署指南
 
-本文档说明如何将算法可视化平台部署到 GitHub Pages。
+本文档说明如何进行 Git 版本管理和部署算法可视化平台。
 
 ---
 
 ## 📋 目录
 
-- [部署前准备](#部署前准备)
-- [部署步骤](#部署步骤)
+- [Git 基础操作](#git-基础操作)
+- [日常开发流程](#日常开发流程)
+- [部署到 GitHub Pages](#部署到-github-pages)
 - [自动化部署脚本](#自动化部署脚本)
 - [注意事项](#注意事项)
 - [常见问题](#常见问题)
@@ -15,7 +16,301 @@
 
 ---
 
-## 部署前准备
+## Git 基础操作
+
+### 1. 初次配置 Git
+
+如果是第一次使用 Git，需要先配置用户信息：
+
+```bash
+# 配置用户名
+git config --global user.name "你的名字"
+
+# 配置邮箱
+git config --global user.email "你的邮箱@example.com"
+
+# 查看配置
+git config --list
+```
+
+### 2. 克隆项目
+
+**从 GitHub 克隆项目到本地：**
+
+```bash
+# 使用 HTTPS（推荐）
+git clone https://github.com/XVSHIFU/algorithm-visualization-platform.git
+
+# 或使用 SSH（需要配置 SSH 密钥）
+git clone git@github.com:XVSHIFU/algorithm-visualization-platform.git
+
+# 进入项目目录
+cd algorithm-visualization-platform
+```
+
+### 3. 查看状态
+
+```bash
+# 查看当前分支和文件状态
+git status
+
+# 查看所有分支
+git branch -a
+
+# 查看当前分支
+git branch
+```
+
+### 4. 提交代码到本地
+
+```bash
+# 查看修改了哪些文件
+git status
+
+# 添加所有修改的文件
+git add .
+
+# 或添加指定文件
+git add src/App.tsx
+git add docs/README.md
+
+# 提交到本地仓库
+git commit -m "feat: 添加新功能"
+
+# 查看提交历史
+git log --oneline
+```
+
+**提交信息规范：**
+
+```
+<type>(<scope>): <subject>
+
+type（类型）：
+- feat: 新功能
+- fix: 修复 bug
+- docs: 文档更新
+- style: 代码格式调整（不影响功能）
+- refactor: 代码重构
+- test: 测试相关
+- chore: 构建/工具链相关
+
+示例：
+feat(ai): 添加 AI 助手功能
+fix(sort): 修复冒泡排序动画卡顿
+docs(readme): 更新安装说明
+```
+
+### 5. 推送到 GitHub
+
+```bash
+# 推送到远程 main 分支
+git push origin main
+
+# 如果是首次推送新分支
+git push -u origin main
+
+# 查看远程仓库地址
+git remote -v
+```
+
+**常见推送问题：**
+
+#### 问题 1：SSH 连接失败
+
+```bash
+# 错误信息
+Connection closed by 198.18.0.66 port 22
+fatal: Could not read from remote repository.
+
+# 解决方法：切换到 HTTPS
+git remote set-url origin https://github.com/XVSHIFU/algorithm-visualization-platform.git
+git push origin main
+```
+
+#### 问题 2：HTTPS 连接超时
+
+```bash
+# 错误信息
+fatal: unable to access 'https://github.com/...': Failed to connect
+
+# 解决方法：等待网络恢复或切换网络
+# 或者配置代理（如果使用代理）
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy http://127.0.0.1:7890
+
+# 取消代理配置
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
+### 6. 拉取最新代码
+
+```bash
+# 拉取远程 main 分支最新代码
+git pull origin main
+
+# 如果有冲突，需要手动解决后再提交
+```
+
+### 7. 创建和管理标签
+
+```bash
+# 创建标签（标记版本）
+git tag -a v0.3 -m "v0.3: AI 助手版本"
+
+# 查看所有标签
+git tag
+
+# 查看标签详情
+git show v0.3
+
+# 推送标签到远程
+git push origin v0.3
+
+# 推送所有标签
+git push origin --tags
+
+# 删除本地标签
+git tag -d v0.3
+
+# 删除远程标签
+git push origin --delete v0.3
+```
+
+### 8. 分支操作
+
+```bash
+# 查看所有分支
+git branch -a
+
+# 创建新分支
+git checkout -b feature-new
+
+# 切换分支
+git checkout main
+
+# 删除本地分支
+git branch -d feature-new
+
+# 强制删除本地分支
+git branch -D feature-new
+
+# 删除远程分支
+git push origin --delete feature-new
+```
+
+---
+
+## 日常开发流程
+
+### 完整的开发 → 提交 → 推送流程
+
+#### 步骤 1：开发和测试
+
+```bash
+# 1. 确保在 main 分支
+git checkout main
+
+# 2. 拉取最新代码（多人协作时）
+git pull origin main
+
+# 3. 进行开发
+# 修改代码、添加功能...
+
+# 4. 本地测试
+npm run dev      # 启动开发服务器测试
+npm run lint     # 代码检查
+npm run build    # 构建测试
+```
+
+#### 步骤 2：提交代码
+
+```bash
+# 1. 查看修改了什么
+git status
+
+# 2. 查看具体修改内容
+git diff
+
+# 3. 添加文件到暂存区
+git add .
+
+# 或选择性添加
+git add src/components/AIAssistant/
+
+# 4. 提交到本地仓库
+git commit -m "feat(ai): 添加 AI 助手组件
+
+- 实现聊天窗口界面
+- 集成本地知识库
+- 支持上下文识别"
+
+# 多行提交信息格式：
+# 第一行：简短描述（50字符内）
+# 空一行
+# 详细说明
+```
+
+#### 步骤 3：推送到 GitHub
+
+```bash
+# 推送到远程 main 分支
+git push origin main
+
+# 如果推送失败（远程有新提交），先拉取
+git pull origin main
+git push origin main
+```
+
+#### 步骤 4：创建版本标签（重要版本）
+
+```bash
+# 为重要版本打标签
+git tag -a v0.3 -m "v0.3: 内置 AI 算法助手"
+
+# 推送标签
+git push origin v0.3
+```
+
+### 示例：完整的 v0.3 开发流程
+
+```bash
+# 1. 开发 AI 助手功能
+# ... 编写代码 ...
+
+# 2. 本地测试
+npm run dev
+npm run lint
+npm run build
+
+# 3. 提交代码
+git status
+git add .
+git commit -m "feat: release v0.3 - AI assistant with DeepSeek integration
+
+- 新增 AI 助手组件（悬浮按钮、聊天窗口）
+- 实现本地知识库（70+ 条算法知识）
+- 支持 OpenAI 兼容 API（DeepSeek/OpenAI/GLM）
+- 动态显示当前模型名称
+- 完善安全文档和配置说明"
+
+# 4. 推送到 GitHub
+git push origin main
+
+# 5. 创建版本标签
+git tag -a v0.3 -m "v0.3: 内置 AI 算法助手，支持本地知识库和真实模型接入"
+git push origin v0.3
+
+# 6. 查看 GitHub 仓库确认
+# 访问 https://github.com/XVSHIFU/algorithm-visualization-platform
+```
+
+---
+
+## 部署到 GitHub Pages
+
+### 部署前准备
 
 ### 1. 确保代码已提交
 
