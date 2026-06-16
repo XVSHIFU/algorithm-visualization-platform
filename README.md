@@ -7,6 +7,12 @@
 
 基于 React + TypeScript + Vite 构建的算法可视化教学平台，通过动态可视化帮助理解算法原理。
 
+## 🌐 在线演示
+
+🎯 **[点击访问在线演示](https://xvshifu.github.io/algorithm-visualization-platform/)**
+
+体验所有算法可视化功能和 AI 助手（本地知识库模式，离线可用）。
+
 ## 📚 项目简介
 
 本项目是一个 Web 应用程序，旨在通过可视化方式展示经典算法的执行过程，帮助学生和开发者更直观地理解算法的工作原理。
@@ -18,19 +24,26 @@
 - 🎮 **交互式控制**: 播放/暂停/步进/重置等精细控制
 - 📊 **数据自定义**: 支持自定义输入或随机生成测试数据
 - 📖 **详细说明**: 提供算法原理、复杂度分析和实现文档
+- 🤖 **AI 算法助手**: 内置 AI 问答，随时解答算法疑问（v0.3 新增）
 
 ## 🎨 已实现算法
 
 ### 排序算法
 - ✅ **冒泡排序** (Bubble Sort) - 简单 - O(n²)
-- 🚧 **快速排序** (Quick Sort) - 中等 - O(n log n) - 即将推出
-- 🚧 **归并排序** (Merge Sort) - 中等 - O(n log n) - 即将推出
+- ✅ **快速排序** (Quick Sort) - 中等 - O(n log n)
+- ✅ **归并排序** (Merge Sort) - 中等 - O(n log n)
 
 ### 图算法
-- 🚧 **Dijkstra最短路径** - 中等 - 即将推出
+- ✅ **Dijkstra最短路径** - 中等 - O((V+E)logV)
 
 ### 递归算法
-- 🚧 **汉诺塔** (Tower of Hanoi) - 中高 - 即将推出
+- ✅ **汉诺塔** (Tower of Hanoi) - 中高 - O(2^n)
+
+## 📌 版本说明
+
+- **v0.1** (2026-06-15): 首个完整版本 - 5 个算法 + 可视化组件 + 测试用例
+- **v0.2** (2026-06-15): 漫画风格 UI 优化 + 性能改进 + Bug 修复
+- **v0.3** (2026-06-16): AI 助手集成 - 本地知识库 + DeepSeek API 支持
 
 ## 🛠️ 技术栈
 
@@ -51,7 +64,7 @@
 
 1. **克隆仓库**
 ```bash
-git clone https://github.com/your-team/algorithm-visualization-platform.git
+git clone https://github.com/XVSHIFU/algorithm-visualization-platform.git
 cd algorithm-visualization-platform
 ```
 
@@ -138,6 +151,8 @@ npm run lint
 
 ## 🏗️ 构建部署
 
+### 本地构建
+
 ```bash
 # 构建生产版本
 npm run build
@@ -147,6 +162,20 @@ npm run preview
 ```
 
 构建产物将生成在 `dist/` 目录中，可部署到任何静态托管服务。
+
+### 部署到 GitHub Pages
+
+项目已配置 GitHub Pages 自动部署。详细部署说明和注意事项请查看：
+
+📖 **[部署指南](docs/DEPLOYMENT.md)**
+
+### AI 助手配置
+
+项目内置 AI 算法助手，默认使用本地知识库模式（离线可用）。
+
+如需接入真实 AI 模型（DeepSeek / OpenAI / 智谱 GLM），请查看：
+
+📖 **[AI 助手使用说明](docs/AI_ASSISTANT.md)**
 
 ## 👥 团队成员与分工
 
@@ -191,8 +220,16 @@ MIT License
 
 ## 📮 联系方式
 
-- 项目仓库: [GitHub](https://github.com/your-team/algorithm-visualization-platform)
-- 问题反馈: [Issues](https://github.com/your-team/algorithm-visualization-platform/issues)
+- 项目仓库: [GitHub](https://github.com/XVSHIFU/algorithm-visualization-platform)
+- 问题反馈: [Issues](https://github.com/XVSHIFU/algorithm-visualization-platform/issues)
+- 在线演示: [GitHub Pages](https://xvshifu.github.io/algorithm-visualization-platform/)
+
+## 📖 相关文档
+
+- [部署指南](docs/DEPLOYMENT.md) - 如何部署到 GitHub Pages
+- [AI 助手使用说明](docs/AI_ASSISTANT.md) - 如何配置 AI 模型
+- [架构设计](docs/ARCHITECTURE.md) - 系统架构和技术选型
+- [快速开始](docs/QUICKSTART.md) - 快速上手指南
 
 ---
 
