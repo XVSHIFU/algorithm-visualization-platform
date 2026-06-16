@@ -4,38 +4,47 @@
   gap: 2rem;
 }
 
-.sorting-algorithms h1 {
+.sorting-algorithms h1,
+.page-header h1 {
+  display: inline-block;
   margin: 0;
-  color: #2c3e50;
+  color: var(--comic-ink);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 950;
+  text-shadow: 3px 3px 0 var(--comic-yellow);
 }
 
 .page-description {
   margin: 0;
-  color: #7f8c8d;
+  color: var(--comic-muted);
   line-height: 1.8;
   font-size: 1.1rem;
+  font-weight: 700;
+  max-width: 760px;
 }
 
 .algorithms-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
 }
 
 .algorithm-card {
   background-color: white;
-  border-radius: 12px;
+  border: var(--comic-border);
+  border-radius: 18px;
   padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--comic-shadow);
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  transition: all 0.3s ease;
+  transition: all 0.18s ease;
+  position: relative;
 }
 
 .algorithm-card:hover:not(.disabled) {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translate(-4px, -4px) rotate(0.5deg);
+  box-shadow: 11px 11px 0 var(--comic-ink);
 }
 
 .algorithm-card.disabled {
@@ -46,36 +55,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid #ecf0f1;
+  border-bottom: 4px solid var(--comic-ink);
 }
 
-.card-header h2 {
+.card-header h2,
+.card-header h3 {
   margin: 0;
-  color: #2c3e50;
+  color: var(--comic-ink);
   font-size: 1.5rem;
+  font-weight: 950;
 }
 
 .difficulty-badge {
   padding: 0.25rem 0.75rem;
-  border-radius: 20px;
+  border-radius: 999px;
+  border: 3px solid var(--comic-ink);
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 950;
+  box-shadow: 3px 3px 0 var(--comic-ink);
 }
 
 .badge-easy {
-  background-color: #d5f4e6;
-  color: #27ae60;
+  background-color: var(--comic-green);
+  color: var(--comic-ink);
 }
 
 .badge-medium {
-  background-color: #ffeaa7;
-  color: #f39c12;
+  background-color: var(--comic-yellow);
+  color: var(--comic-ink);
 }
 
 .badge-hard {
-  background-color: #fab1a0;
-  color: #e74c3c;
+  background-color: var(--comic-red);
+  color: white;
 }
 
 .card-body {
@@ -87,57 +101,77 @@
 
 .algorithm-description {
   margin: 0;
-  color: #34495e;
+  color: var(--comic-muted);
   line-height: 1.6;
+  font-weight: 700;
 }
 
-.complexity-info {
+.complexity-info,
+.algorithm-meta {
   display: flex;
   gap: 0.5rem;
   align-items: center;
   padding: 0.75rem;
-  background-color: #ecf0f1;
-  border-radius: 6px;
+  background-color: #fff7cc;
+  border: 3px dashed var(--comic-ink);
+  border-radius: 12px;
 }
 
-.complexity-label {
-  font-weight: 600;
-  color: #2c3e50;
+.complexity-label,
+.complexity {
+  font-weight: 900;
+  color: var(--comic-ink);
 }
 
 .complexity-value {
-  color: #3498db;
+  color: var(--comic-blue);
   font-family: monospace;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 900;
 }
 
 .card-footer {
   padding-top: 1rem;
-  border-top: 1px solid #ecf0f1;
+  border-top: 3px solid var(--comic-ink);
 }
 
-.start-btn {
+.start-btn,
+.coming-soon-btn,
+.back-home-btn {
   width: 100%;
   padding: 0.75rem 1.5rem;
-  background-color: #3498db;
+  background-color: var(--comic-blue);
   color: white;
-  border: none;
-  border-radius: 6px;
+  border: var(--comic-border);
+  border-radius: 999px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 950;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  transition: background-color 0.3s;
+  box-shadow: var(--comic-shadow-small);
 }
 
-.start-btn:hover:not(.disabled) {
-  background-color: #2980b9;
-}
-
+.coming-soon-btn,
 .start-btn.disabled {
-  background-color: #bdc3c7;
+  background-color: #d1d5db;
+  color: var(--comic-ink);
   cursor: not-allowed;
+}
+
+.back-section {
+  text-align: center;
+}
+
+.back-home-btn {
+  width: auto;
+  background: var(--comic-yellow);
+  color: var(--comic-ink);
+}
+
+@media (max-width: 768px) {
+  .algorithms-grid {
+    grid-template-columns: 1fr;
+  }
 }

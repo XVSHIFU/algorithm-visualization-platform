@@ -147,9 +147,7 @@ export const HanoiVisualizer: React.FC = () => {
       <div className="hanoi-container">
         <div className="move-counter">
           移动次数: <strong>{moveCount}</strong>
-          {currentStep.metadata?.optimal && (
-            <span className="optimal"> / 最优: {currentStep.metadata.optimal}</span>
-          )}
+          <span className="optimal"> / 最优: {Math.pow(2, numDisks) - 1}</span>
         </div>
 
         <div className="towers-container">

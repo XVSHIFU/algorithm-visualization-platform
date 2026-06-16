@@ -1,3 +1,4 @@
+.graph-algorithms-page,
 .recursive-algorithms-page {
   padding: 2rem;
   max-width: 1200px;
@@ -10,105 +11,113 @@
 }
 
 .page-header h1 {
-  font-size: 2.5rem;
-  color: #2c3e50;
+  display: inline-block;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--comic-ink);
   margin-bottom: 1rem;
+  font-weight: 950;
+  text-shadow: 3px 3px 0 var(--comic-yellow);
 }
 
 .page-description {
   font-size: 1.1rem;
-  color: #7f8c8d;
-  max-width: 600px;
+  color: var(--comic-muted);
+  max-width: 680px;
   margin: 0 auto;
   line-height: 1.6;
+  font-weight: 700;
 }
 
 .algorithms-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
 }
 
 .algorithm-card {
   background-color: white;
-  border-radius: 8px;
+  border: var(--comic-border);
+  border-radius: 18px;
   padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--comic-shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .algorithm-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translate(-4px, -4px) rotate(-0.5deg);
+  box-shadow: 11px 11px 0 var(--comic-ink);
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 4px solid var(--comic-ink);
 }
 
 .card-header h3 {
   margin: 0;
-  color: #2c3e50;
-  font-size: 1.4rem;
+  color: var(--comic-ink);
+  font-size: 1.45rem;
+  font-weight: 950;
 }
 
 .difficulty-badge {
   padding: 0.3rem 0.8rem;
-  color: white;
-  border-radius: 12px;
+  color: var(--comic-ink);
+  border: 3px solid var(--comic-ink);
+  border-radius: 999px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 950;
+  box-shadow: 3px 3px 0 var(--comic-ink);
 }
 
 .algorithm-description {
-  color: #34495e;
+  color: var(--comic-muted);
   line-height: 1.6;
   margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .algorithm-meta {
   display: flex;
   gap: 1rem;
   margin-bottom: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid #ecf0f1;
+  padding: 0.85rem;
+  border: 3px dashed var(--comic-ink);
+  border-radius: 12px;
+  background: #fff7cc;
 }
 
 .complexity {
-  color: #7f8c8d;
-  font-size: 0.9rem;
+  color: var(--comic-ink);
+  font-size: 0.95rem;
+  font-weight: 900;
 }
 
-.start-btn {
+.start-btn,
+.coming-soon-btn,
+.back-home-btn {
   width: 100%;
   padding: 0.8rem;
-  background-color: #3498db;
+  background-color: var(--comic-blue);
   color: white;
-  border: none;
-  border-radius: 4px;
+  border: var(--comic-border);
+  border-radius: 999px;
   cursor: pointer;
   font-size: 1rem;
-  font-weight: 600;
-  transition: background-color 0.2s;
-}
-
-.start-btn:hover {
-  background-color: #2980b9;
+  font-weight: 950;
+  box-shadow: var(--comic-shadow-small);
 }
 
 .coming-soon-btn {
-  width: 100%;
-  padding: 0.8rem;
-  background-color: #95a5a6;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  background-color: #d1d5db;
+  color: var(--comic-ink);
   cursor: not-allowed;
-  font-size: 1rem;
 }
 
 .back-section {
@@ -116,15 +125,19 @@
 }
 
 .back-home-btn {
+  width: auto;
   padding: 0.8rem 2rem;
-  background-color: #95a5a6;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
+  background-color: var(--comic-yellow);
+  color: var(--comic-ink);
 }
 
-.back-home-btn:hover {
-  background-color: #7f8c8d;
+@media (max-width: 768px) {
+  .graph-algorithms-page,
+  .recursive-algorithms-page {
+    padding: 1rem 0;
+  }
+
+  .algorithms-grid {
+    grid-template-columns: 1fr;
+  }
 }

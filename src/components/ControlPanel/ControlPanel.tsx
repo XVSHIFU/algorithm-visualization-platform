@@ -44,15 +44,28 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
   const isPlaying = animationState === 'playing';
   const isFinished = animationState === 'finished';
   const isIdle = animationState === 'idle';
+  const progress = totalSteps > 0 ? Math.round(((currentStep + 1) / totalSteps) * 100) : 0;
+  const stateLabelMap: Record<AnimationState, string> = {
+    idle: '待开始',
+    playing: '播放中',
+    paused: '已暂停',
+    finished: '已完成',
+  };
 
   return (
     <div className="control-panel">
+      <div className="control-status" aria-live="polite">
+        <span className="status-badge">状态：{stateLabelMap[animationState]}</span>
+        <span className="status-badge accent">进度：{progress}%</span>
+      </div>
+
       <div className="control-group">
         <button
           className="control-btn"
           onClick={onPrevious}
           disabled={isPlaying || currentStep === 0}
           title="上一步"
+          aria-label="上一步"
         >
           ⏮
         </button>
@@ -62,6 +75,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
           onClick={onPlayPause}
           disabled={isFinished}
           title={isPlaying ? '暂停' : '播放'}
+          aria-label={isPlaying ? '暂停动画' : '播放动画'}
         >
           {isPlaying ? '⏸' : '▶'}
         </button>
@@ -71,6 +85,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
           onClick={onNext}
           disabled={isPlaying || currentStep >= totalSteps - 1}
           title="下一步"
+          aria-label="下一步"
         >
           ⏭
         </button>
@@ -80,6 +95,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
           onClick={onStop}
           disabled={isIdle}
           title="停止"
+          aria-label="停止动画"
         >
           ⏹
         </button>
@@ -88,6 +104,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
           className="control-btn"
           onClick={onReset}
           title="重置"
+          aria-label="重置动画"
         >
           ↻
         </button>
@@ -95,12 +112,12 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 
       <div className="progress-info">
         <span className="step-counter">
-          步骤: {currentStep + 1} / {totalSteps}
+          步骤: {totalSteps > 0 ? currentStep + 1 : 0} / {totalSteps}
         </span>
-        <div className="progress-bar">
+        <div className="progress-bar" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}>
           <div
             className="progress-fill"
-            style={{ width: `${totalSteps > 0 ? ((currentStep + 1) / totalSteps) * 100 : 0}%` }}
+            style={{ width: `${progress}%` }}
           />
         </div>
       </div>

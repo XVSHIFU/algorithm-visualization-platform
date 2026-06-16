@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Layout } from './components';
 import { Home, SortingAlgorithms, GraphAlgorithms, RecursiveAlgorithms } from './pages';
 import {
@@ -68,6 +68,17 @@ const About: React.FC = () => {
           <li>📚 详细的算法说明和复杂度分析</li>
         </ul>
 
+        <h2>当前版本</h2>
+        <p>
+          当前版本为 <strong>v0.2 漫画风格优化版</strong>。该版本在 v0.1 首个完整版本基础上，
+          重点完成 UI/UX 优化、输入校验增强、Dijkstra 测试用例修复和响应式体验改进。
+        </p>
+        <ul>
+          <li>v0.1：完成 5 个算法、可视化组件、路由系统和测试用例。</li>
+          <li>v0.2：升级漫画风格界面，优化控制面板状态展示，修复已知交互问题。</li>
+          <li>v0.3：计划用于答辩前最终检查和稳定性完善。</li>
+        </ul>
+
         <h2>团队成员</h2>
         <p>本项目由4人小组共同完成，作为课程设计项目。</p>
 
@@ -87,9 +98,9 @@ const NotFound: React.FC = () => {
       <h1 style={{ fontSize: '6rem', margin: 0 }}>404</h1>
       <h2>页面未找到</h2>
       <p style={{ color: '#7f8c8d', fontSize: '1.2rem' }}>抱歉，您访问的页面不存在。</p>
-      <a href="/" style={{ color: '#3498db', fontSize: '1.1rem', textDecoration: 'none' }}>
+      <Link to="/" style={{ color: '#111827', fontSize: '1.1rem', textDecoration: 'none', fontWeight: 800 }}>
         返回首页 →
-      </a>
+      </Link>
     </div>
   );
 };

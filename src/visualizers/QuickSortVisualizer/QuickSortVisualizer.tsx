@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ControlPanel } from '@/components';
 import { AnimationState, PlaybackSpeed, Step } from '@/types';
 import { quickSortAlgorithm } from '@/algorithms/quickSort';
+import { parseIntegerArrayInput } from '@/utils';
 import './QuickSortVisualizer.css';
 
 /**
@@ -20,14 +21,14 @@ export const QuickSortVisualizer: React.FC = () => {
 
   // 开始可视化
   const handleStart = () => {
-    const inputArray = input.split(',').map(num => parseInt(num.trim())).filter(num => !isNaN(num));
+    const result = parseIntegerArrayInput(input, { minLength: 3, maxLength: 20, minValue: 0, maxValue: 999 });
 
-    if (inputArray.length === 0) {
-      alert('请输入有效的数字数组，用逗号分隔');
+    if (result.error) {
+      alert(result.error);
       return;
     }
 
-    const generatedSteps = quickSortAlgorithm.execute(inputArray);
+    const generatedSteps = quickSortAlgorithm.execute(result.values);
     setSteps(generatedSteps);
     setCurrentStepIndex(0);
     setAnimationState('paused');
@@ -175,7 +176,7 @@ export const QuickSortVisualizer: React.FC = () => {
       </div>
 
       <div className="input-section">
-        <label htmlFor="array-input">输入数组（用逗号分隔）:</label>
+        <label htmlFor="array-input">输入数组（3-20个整数，用英文逗号分隔）:</label>
         <div className="input-group">
           <input
             id="array-input"

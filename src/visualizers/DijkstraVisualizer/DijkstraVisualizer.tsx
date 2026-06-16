@@ -30,7 +30,7 @@ export const DijkstraVisualizer: React.FC = () => {
     ],
   };
 
-  const [graph] = useState<Graph>(defaultGraph);
+  const [graph, setGraph] = useState<Graph>(defaultGraph);
   const [startNode, setStartNode] = useState<string>('A');
   const [endNode, setEndNode] = useState<string>('E');
   const [steps, setSteps] = useState<Step[]>([]);
@@ -56,9 +56,12 @@ export const DijkstraVisualizer: React.FC = () => {
 
   // 使用测试用例
   const handleUseTestCase = (testCase: { input: { graph: Graph; start: string; end: string } }) => {
-    // 简化：直接使用默认图，只改变起点终点
+    setGraph(testCase.input.graph);
     setStartNode(testCase.input.start);
     setEndNode(testCase.input.end);
+    setSteps([]);
+    setCurrentStepIndex(0);
+    setAnimationState('idle');
   };
 
   // 控制函数
@@ -123,18 +126,27 @@ export const DijkstraVisualizer: React.FC = () => {
     const path = data.path || [];
     const isCompleted = currentStep.metadata?.completed;
 
-    // 节点位置（简单布局）
-    const nodePositions: Record<string, { x: number; y: number }> = {
-      A: { x: 100, y: 150 },
-      B: { x: 250, y: 50 },
-      C: { x: 250, y: 250 },
-      D: { x: 400, y: 150 },
-      E: { x: 550, y: 150 },
-    };
+    // 节点位置：根据当前图节点数量自动环形布局，兼容测试用例中的不同图结构
+    const centerX = 350;
+    const centerY = 200;
+    const radius = graph.nodes.length <= 2 ? 140 : 165;
+    const nodePositions = graph.nodes.reduce<Record<string, { x: number; y: number }>>((positions, node, index) => {
+      if (graph.nodes.length === 1) {
+        positions[node.id] = { x: centerX, y: centerY };
+        return positions;
+      }
+
+      const angle = (Math.PI * 2 * index) / graph.nodes.length - Math.PI / 2;
+      positions[node.id] = {
+        x: centerX + Math.cos(angle) * radius,
+        y: centerY + Math.sin(angle) * radius,
+      };
+      return positions;
+    }, {});
 
     return (
       <div className="graph-container">
-        <svg width="700" height="400" className="graph-svg">
+        <svg viewBox="0 0 700 420" className="graph-svg" role="img" aria-label="Dijkstra最短路径图可视化">
           {/* 渲染边 */}
           {graph.edges.map((edge, idx) => {
             const fromPos = nodePositions[edge.from];
@@ -142,9 +154,9 @@ export const DijkstraVisualizer: React.FC = () => {
             if (!fromPos || !toPos) return null;
 
             const isInPath = isCompleted &&
-              path.includes(edge.from) &&
-              path.includes(edge.to) &&
-              Math.abs(path.indexOf(edge.from) - path.indexOf(edge.to)) === 1;
+              path.some((nodeId: string, pathIndex: number) =>
+                pathIndex < path.length - 1 && nodeId === edge.from && path[pathIndex + 1] === edge.to
+              );
 
             return (
               <g key={idx}>
