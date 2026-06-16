@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AIAssistant } from '../AIAssistant/AIAssistant';
 import './Layout.css';
 
 interface LayoutProps {
@@ -39,6 +40,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           <p>&copy; 2026 算法可视化平台 | 课程设计项目</p>
         </div>
       </footer>
+
+      {/* AI 助手 */}
+      <AIAssistant />
     </div>
   );
 };

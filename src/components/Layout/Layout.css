@@ -93,7 +93,7 @@
 }
 
 .layout-footer p::after {
-  content: ' · v0.2 ';
+  content: ' · v0.3 ';
   color: var(--comic-yellow);
 }
 

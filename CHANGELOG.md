@@ -164,17 +164,53 @@ algorithm-visualization-platform/
 
 ---
 
+## [v0.3] - 2026-06-16
+
+### 🤖 AI 助手
+
+- ✅ 新增内置 AI 算法助手组件
+- ✅ 支持全局悬浮聊天入口（右下角蓝色按钮）
+- ✅ 支持根据当前页面提供算法上下文回答
+- ✅ 支持本地知识库演示模式（离线可用，无需 API Key）
+- ✅ 支持快捷问题按钮（根据当前页面动态变化）
+- ✅ 覆盖 5 个算法、平台使用、复杂度分析等问答内容
+
+### 📚 可扩展 AI 接入
+
+- ✅ 预留 OpenAI / Claude / Proxy Provider 接入形式
+- ✅ 新增 AIProvider 统一接口
+- ✅ 新增 `.env.example` 配置示例（不包含真实密钥）
+- ✅ 新增 `docs/AI_ASSISTANT.md` 详细说明文档
+- ✅ 说明前端不应暴露 API Key，真实模型应通过后端代理接入
+- ✅ 支持用户从 GitHub 拉取源码后自行配置代理或本地模型
+
+### 🎨 版本标识更新
+
+- ✅ 页脚版本更新为 v0.3
+- ✅ 关于页版本说明更新为 v0.3 AI 助手版
+- ✅ 保持 v0.2 漫画风格视觉一致性
+
+### 📂 新增文件
+
+- `src/services/ai/aiTypes.ts` - AI 服务类型定义
+- `src/services/ai/localKnowledgeProvider.ts` - 本地知识库 Provider
+- `src/services/ai/providerFactory.ts` - Provider 工厂
+- `src/services/ai/index.ts` - AI 服务统一导出
+- `src/components/AIAssistant/AIAssistant.tsx` - AI 助手组件
+- `src/components/AIAssistant/AIAssistant.css` - AI 助手样式
+- `.env.example` - 环境变量配置示例
+- `docs/AI_ASSISTANT.md` - AI 助手使用说明
+
+---
+
 ## [未来版本计划]
 
-### [v0.3] - 可选（预计 2026-06-21 至 2026-06-25）
+### 后续可能优化方向
 
-**待定内容：**
-
-- 答辩前的最终优化
-- 确保所有功能稳定
-- 用户体验完善
-
-设想内容：内置AI，随时解答用户疑问，可接入多方API，支持 openai、claude的形式
+- 答辩前的最终稳定性检查
+- 根据答辩反馈继续完善
+- 补充更多算法问答知识
+- 优化 AI 助手交互体验
 
 ---
 
